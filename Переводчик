@@ -1,0 +1,31 @@
+from googletrans import Translator, LANGUAGES
+import sys
+
+
+def translate_with_googletrans():
+
+    translator = Translator()
+
+    print("Доступные языки для перевода:")
+    print("zh-cn - китайский (упрощенный)")
+    print("ru - русский")
+    print("en - английский")
+    print("и другие...")
+    print("-" * 50)
+
+    while True:
+        print("\n1. Китайский → Русский")
+        print("2. Китайский → Английский")
+        print("3. Произвольный перевод")
+        print("4. Выход")
+
+        choice = input("\nВыберите вариант: ")
+
+        if choice == "1":
+            text = input("Введите китайский текст: ")
+            try:
+                result = translator.translate(text, src='zh-cn', dest='ru')
+                print(f"\nПеревод: {result.text}")
+                print(f"Произношение: {result.pronunciation if hasattr(result, 'pronunciation') else 'не доступно'}")
+            except Exception as e:
+                print(f"Ошибка перевода: {e}")
